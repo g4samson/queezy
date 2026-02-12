@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.profs.queezy.data.utils.Destinations
+import com.profs.queezy.presentation.screen.home.HomeScreen
 import com.profs.queezy.presentation.screen.splash.SplashScreen
 
 @Composable
@@ -14,5 +15,8 @@ fun NavigationGraph(navController: NavHostController, modifier: Modifier = Modif
     NavHost(navController, Destinations.Splash) {
 
         composable<Destinations.Splash> { SplashScreen(navController) }
+
+        composable<Destinations.Home> { HomeScreen(navController) }
+
     }
 }
