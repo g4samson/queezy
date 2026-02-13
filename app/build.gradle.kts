@@ -86,4 +86,7 @@ dependencies {
     // Glance ( Widget Compose )
     implementation(libs.androidx.glance.appwidget)
     implementation(libs.androidx.glance.material3)
+
+    // Charts
+    implementation(libs.charty)
 }

@@ -18,18 +18,19 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.profs.queezy.R
 import com.profs.queezy.data.utils.Destinations
+import com.profs.queezy.presentation.theme.NeutralBlack
+import com.profs.queezy.presentation.theme.NeutralGrey3
 
 @Composable
 fun BottomBar(selected: String = "", navController: NavHostController) {
 
     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
         Image(
-            painterResource(R.drawable.icon_bottom),
+            painterResource(R.drawable.background_bottom),
             null,
             Modifier.fillMaxWidth(),
             contentScale = ContentScale.FillWidth
@@ -57,7 +58,7 @@ fun BottomBar(selected: String = "", navController: NavHostController) {
                         Icon(
                             painterResource(if (selected == "home") R.drawable.icon_bottom_home_selected else R.drawable.icon_bottom_home),
                             null,
-                            Modifier, Color.Unspecified
+                            Modifier, if (selected == "home") NeutralBlack else NeutralGrey3
                         )
                     }
 
@@ -67,7 +68,7 @@ fun BottomBar(selected: String = "", navController: NavHostController) {
                         Icon(
                             painterResource(R.drawable.icon_bottom_discover),
                             null,
-                            Modifier, Color.Unspecified
+                            Modifier, NeutralGrey3
                         )
                     }
                 }
@@ -87,7 +88,7 @@ fun BottomBar(selected: String = "", navController: NavHostController) {
                         Icon(
                             painterResource(R.drawable.icon_bottom_leaderboard),
                             null,
-                            Modifier, Color.Unspecified
+                            Modifier, NeutralGrey3
                         )
                     }
 
@@ -97,7 +98,7 @@ fun BottomBar(selected: String = "", navController: NavHostController) {
                         Icon(
                             painterResource(if (selected == "profile") R.drawable.icon_bottom_profile_selected else R.drawable.icon_bottom_profile),
                             null,
-                            Modifier, Color.Unspecified
+                            Modifier, if (selected == "profile") NeutralBlack else NeutralGrey3
                         )
                     }
                 }

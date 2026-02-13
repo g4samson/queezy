@@ -4,7 +4,10 @@ import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.style.TextIndent
 import androidx.compose.ui.unit.sp
 import com.profs.queezy.R
 
@@ -27,12 +30,45 @@ val Rubik = FontFamily(
 )
 
 val Typography = Typography(
-    titleLarge = TextStyle(
+    titleLarge = TextStyle( // headers
         fontFamily = Rubik,
         fontWeight = FontWeight.Medium,
         fontSize = 24.sp,
         lineHeight = 36.sp,
         letterSpacing = 0.sp,
         color = NeutralWhite
-    )
+    ),
+    displayMedium = TextStyle( // quiz card title
+        fontFamily = Rubik,
+        fontWeight = FontWeight.Medium,
+        fontSize = 16.sp,
+        lineHeight = 24.sp,
+        letterSpacing = 0.sp,
+        color = NeutralBlack
+    ),
+    bodyLarge = TextStyle(  // recent quiz & featured body
+        fontFamily = Rubik,
+        fontWeight = FontWeight.Medium,
+        fontSize = 18.sp,
+        lineHeight = 24.sp,
+        letterSpacing = 0.sp,
+        color = NeutralWhite
+    ),
+    bodyMedium = TextStyle(  // quiz card body
+        fontFamily = Rubik,
+        fontWeight = FontWeight.Normal,
+        fontSize = 12.sp,
+        lineHeight = 18.sp,
+        letterSpacing = 0.sp,
+        color = NeutralGrey2
+    ),
+
+    headlineSmall = TextStyle(  // text button's text
+        fontFamily = Rubik,
+        fontWeight = FontWeight.Medium,
+        fontSize = 14.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 0.sp,
+        color = Primary,
+    ),
 )

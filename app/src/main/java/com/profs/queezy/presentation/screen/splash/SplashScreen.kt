@@ -17,10 +17,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.IntOffset
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.glance.text.Text
 import androidx.navigation.NavHostController
 import com.profs.queezy.R
 import com.profs.queezy.data.utils.Destinations
@@ -53,7 +51,7 @@ fun SplashScreen(navController: NavHostController) {
 
         coroutineScope {
             launch {
-                offsetTextY.animateTo(-1200f, tween(700))
+                offsetTextY.animateTo(-1200f, tween(700, easing = FastOutSlowInEasing))
             }
 
             launch {
@@ -103,12 +101,7 @@ fun SplashScreen(navController: NavHostController) {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .offset {
-                        IntOffset(
-                            offsetWomanX.value.toInt(),
-                            0
-                        )
-                    },
+                    .offset { IntOffset(offsetWomanX.value.toInt(), 0) },
                 contentAlignment = Alignment.Center
             ) {
                 Image(
