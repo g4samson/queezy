@@ -4,8 +4,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
@@ -28,7 +28,7 @@ import com.profs.queezy.presentation.theme.NeutralGrey3
 @Composable
 fun BottomBar(selected: String = "", navController: NavHostController) {
 
-    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
+    Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.BottomCenter) {
         Image(
             painterResource(R.drawable.background_bottom),
             null,
@@ -107,7 +107,7 @@ fun BottomBar(selected: String = "", navController: NavHostController) {
 
         Box(
             Modifier
-                .fillMaxSize()
+                .fillMaxWidth()
                 .padding(bottom = 59.dp), contentAlignment = Alignment.BottomCenter
         ) {
             IconButton(onClick = {}, modifier = Modifier.size(48.dp)) {

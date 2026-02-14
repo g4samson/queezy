@@ -2,6 +2,7 @@ package com.profs.queezy.presentation.composable
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -33,7 +34,7 @@ import com.profs.queezy.presentation.theme.Secondary
 import com.profs.queezy.presentation.theme.Typography
 
 @Composable
-fun FeaturedField() {
+fun FeaturedField(onClick: () -> Unit) {
 
     Box(
         Modifier
@@ -108,7 +109,8 @@ fun FeaturedField() {
                     .fillMaxWidth(0.6f)
                     .height(44.dp)
                     .clip(RoundedCornerShape(20.dp))
-                    .background(NeutralWhite),
+                    .background(NeutralWhite)
+                    .clickable{ onClick() },
                 Arrangement.Center,
                 Alignment.CenterVertically
             ) {
@@ -125,5 +127,5 @@ fun FeaturedField() {
 @Preview
 @Composable
 private fun FeaturedFieldPreview() {
-    FeaturedField()
+    FeaturedField {}
 }

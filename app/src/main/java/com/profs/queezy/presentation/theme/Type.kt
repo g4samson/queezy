@@ -30,13 +30,21 @@ val Rubik = FontFamily(
 )
 
 val Typography = Typography(
-    titleLarge = TextStyle( // headers
+    titleLarge = TextStyle( // headers of screen
         fontFamily = Rubik,
         fontWeight = FontWeight.Medium,
         fontSize = 24.sp,
         lineHeight = 36.sp,
         letterSpacing = 0.sp,
         color = NeutralWhite
+    ),
+    titleMedium = TextStyle( // headers of section
+        fontFamily = Rubik,
+        fontWeight = FontWeight.Medium,
+        fontSize = 20.sp,
+        lineHeight = 28.sp,
+        letterSpacing = 0.sp,
+        color = NeutralBlack
     ),
     displayMedium = TextStyle( // quiz card title
         fontFamily = Rubik,
