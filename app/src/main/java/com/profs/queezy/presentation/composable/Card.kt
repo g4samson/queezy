@@ -3,6 +3,7 @@ package com.profs.queezy.presentation.composable
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -39,7 +40,7 @@ import com.profs.queezy.presentation.theme.Primary
 import com.profs.queezy.presentation.theme.Typography
 
 @Composable
-fun QuizCard(quiz: Quiz) {
+fun QuizCard(quiz: Quiz, onClick: () -> Unit) {
 
     Row(
         Modifier
@@ -47,10 +48,8 @@ fun QuizCard(quiz: Quiz) {
             .height(80.dp)
             .clip(RoundedCornerShape(20.dp))
             .background(NeutralWhite)
-            .border(
-                2.dp,
-                NeutralGrey5, RoundedCornerShape(20.dp)
-            )
+            .border(2.dp, NeutralGrey5, RoundedCornerShape(20.dp))
+            .clickable{ onClick() }
     ) {
         Row(
             Modifier
@@ -97,7 +96,7 @@ fun QuizCard(quiz: Quiz) {
 @Preview
 @Composable
 private fun QuizCardPrev() {
-    QuizCard(Quiz("Statistics Math Quiz", "Math", 12, 8, R.drawable.quiz_1))
+    QuizCard(Quiz("Statistics Math Quiz", "Math", 12, 8, R.drawable.quiz_1)) {}
 }
 
 @Composable
@@ -151,7 +150,7 @@ fun FriendCard(user: User) {
 private fun FriendCardPreview() {
     FriendCard(
         User(
-            13,
+            "1",
             "Maren",
             "Workman",
             325,

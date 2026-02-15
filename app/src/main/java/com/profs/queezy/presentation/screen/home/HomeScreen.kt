@@ -1,7 +1,6 @@
 package com.profs.queezy.presentation.screen.home
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -15,12 +14,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -31,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import coil.compose.AsyncImage
 import com.profs.queezy.R
 import com.profs.queezy.data.model.Quiz
 import com.profs.queezy.data.utils.Destinations
@@ -51,6 +53,8 @@ fun HomeScreen(navController: NavHostController, viewModel: HomeViewModel) {
 
     val quizzes = viewModel.quizzes
 
+    val userData = viewModel.userData.collectAsState().value
+
     Scaffold(
         Modifier.fillMaxSize(),
         containerColor = Primary
@@ -65,7 +69,8 @@ fun HomeScreen(navController: NavHostController, viewModel: HomeViewModel) {
             Column(
                 Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 24.dp),
+                    .padding(horizontal = 24.dp)
+                    .padding(top = 16.dp),
                 Arrangement.spacedBy(24.dp),
                 Alignment.CenterHorizontally
             ) {
@@ -92,15 +97,18 @@ fun HomeScreen(navController: NavHostController, viewModel: HomeViewModel) {
                             )
                         }
 
-                        //get data
-                        Text("Madelyn Dias", style = Typography.titleLarge)
+                        Text(
+                            "${userData?.first_name} ${userData?.last_name}",
+                            style = Typography.titleLarge
+                        )
                     }
 
-                    //async image
-                    Image(
-                        painterResource(R.drawable.test_media),
+                    AsyncImage(
+                        userData?.image,
                         null,
-                        Modifier.size(56.dp),
+                        Modifier
+                            .size(56.dp)
+                            .clip(CircleShape),
                         contentScale = ContentScale.FillBounds
                     )
                 }
@@ -131,7 +139,7 @@ fun HomeScreen(navController: NavHostController, viewModel: HomeViewModel) {
                     ) {
                         Text("Live Quizzes", style = Typography.titleMedium)
 
-                        TextButton({}) {
+                        TextButton({ navController.navigate(Destinations.Discover) }) {
                             Text("See all", style = Typography.headlineSmall)
                         }
                     }
@@ -141,7 +149,7 @@ fun HomeScreen(navController: NavHostController, viewModel: HomeViewModel) {
                         verticalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
                         items(quizzes) { quiz ->
-                            QuizCard(quiz)
+                            QuizCard(quiz) { navController.navigate(Destinations.Discover) }
                         }
 
                         item { Spacer(Modifier.height(100.dp)) }
