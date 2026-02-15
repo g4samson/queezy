@@ -1,7 +1,7 @@
 package com.profs.queezy.data.model
 
 data class User(
-    val id: Long,
+    val id: String,
     val firstName: String,
     val lastName: String,
     val rating: Int,
