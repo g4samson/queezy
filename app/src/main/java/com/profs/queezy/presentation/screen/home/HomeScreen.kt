@@ -39,6 +39,7 @@ import com.profs.queezy.data.utils.Destinations
 import com.profs.queezy.data.utils.Storage
 import com.profs.queezy.domain.service.DomainServiceImpl
 import com.profs.queezy.presentation.composable.BottomBar
+import com.profs.queezy.presentation.composable.CategoryHeader
 import com.profs.queezy.presentation.composable.FeaturedField
 import com.profs.queezy.presentation.composable.QuizCard
 import com.profs.queezy.presentation.composable.RecentQuiz
@@ -64,7 +65,8 @@ fun HomeScreen(navController: NavHostController, viewModel: HomeViewModel) {
         Column(
             Modifier
                 .fillMaxSize()
-                .padding(paddingValues), Arrangement.spacedBy(24.dp)
+                .padding(paddingValues),
+            Arrangement.spacedBy(24.dp)
         ) {
             Column(
                 Modifier
@@ -113,7 +115,7 @@ fun HomeScreen(navController: NavHostController, viewModel: HomeViewModel) {
                     )
                 }
 
-                RecentQuiz(Quiz("Statistics Math Quiz", "Math", 12, 10, R.drawable.quiz_1))
+                RecentQuiz(Quiz("Statistics Math Quiz", "Math", 12, 10, R.drawable.image_quiz_1))
 
                 FeaturedField { navController.navigate(Destinations.Discover) }
             }
@@ -132,17 +134,7 @@ fun HomeScreen(navController: NavHostController, viewModel: HomeViewModel) {
                     Arrangement.spacedBy(16.dp),
                     Alignment.CenterHorizontally
                 ) {
-                    Row(
-                        Modifier.fillMaxWidth(),
-                        Arrangement.SpaceBetween,
-                        Alignment.CenterVertically
-                    ) {
-                        Text("Live Quizzes", style = Typography.titleMedium)
-
-                        TextButton({ navController.navigate(Destinations.Discover) }) {
-                            Text("See all", style = Typography.headlineSmall)
-                        }
-                    }
+                    CategoryHeader("Live Quizzes", true) { navController.navigate(Destinations.Discover) }
 
                     LazyColumn(
                         Modifier.fillMaxWidth(),

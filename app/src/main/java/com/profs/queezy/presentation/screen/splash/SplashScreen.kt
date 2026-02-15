@@ -91,7 +91,7 @@ fun SplashScreen(navController: NavHostController) {
                 contentAlignment = Alignment.Center
             ) {
                 Image(
-                    painter = painterResource(R.drawable.man),
+                    painter = painterResource(R.drawable.image_man),
                     contentDescription = null,
                     modifier = Modifier
                         .size(72.dp)
@@ -105,7 +105,7 @@ fun SplashScreen(navController: NavHostController) {
                 contentAlignment = Alignment.Center
             ) {
                 Image(
-                    painter = painterResource(R.drawable.woman),
+                    painter = painterResource(R.drawable.image_woman),
                     contentDescription = null,
                     modifier = Modifier
                         .size(96.dp)

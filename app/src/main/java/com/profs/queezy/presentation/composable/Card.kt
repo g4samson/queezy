@@ -79,7 +79,7 @@ fun QuizCard(quiz: Quiz, onClick: () -> Unit) {
                     .fillMaxHeight()
                     .padding(end = 8.dp), Arrangement.Center
             ) {
-                IconButton(onClick = { }, Modifier.size(24.dp)) {
+                IconButton(onClick = {}, Modifier.size(24.dp), enabled = false) {
                     Icon(
                         painterResource(R.drawable.icon_more),
                         null,
@@ -96,7 +96,7 @@ fun QuizCard(quiz: Quiz, onClick: () -> Unit) {
 @Preview
 @Composable
 private fun QuizCardPrev() {
-    QuizCard(Quiz("Statistics Math Quiz", "Math", 12, 8, R.drawable.quiz_1)) {}
+    QuizCard(Quiz("Statistics Math Quiz", "Math", 12, 8, R.drawable.image_quiz_1)) {}
 }
 
 @Composable
@@ -149,13 +149,6 @@ fun FriendCard(user: User) {
 @Composable
 private fun FriendCardPreview() {
     FriendCard(
-        User(
-            "1",
-            "Maren",
-            "Workman",
-            325,
-            R.drawable.flag_germany,
-            "https://dummyimage.com/400x400/000/fff&text=M"
-        )
+        User("1", "Maren", "Workman", 325, R.drawable.flag_germany, "https://dummyimage.com/400x400/000/fff&text=M")
     )
 }

@@ -16,6 +16,8 @@ val Secondary = Color(0xFF9087E5)
 
 val Accent1 = Color(0xFFFFD6DD)
 val Accent2 = Color(0xFF6A5AE0)
+val Accent3 = Color(0xFF5B4EC3)
+
 
 val DarkPink = Color(0xFF660012)
 val Pink = Color(0xFFFF8FA2)

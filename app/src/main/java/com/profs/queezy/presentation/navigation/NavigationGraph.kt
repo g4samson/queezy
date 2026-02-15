@@ -7,6 +7,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.profs.queezy.data.utils.Destinations
+import com.profs.queezy.presentation.screen.discover.DiscoverScreen
+import com.profs.queezy.presentation.screen.discover.DiscoverViewModel
 import com.profs.queezy.presentation.screen.home.HomeScreen
 import com.profs.queezy.presentation.screen.home.HomeViewModel
 import com.profs.queezy.presentation.screen.splash.SplashScreen
@@ -21,6 +23,11 @@ fun NavigationGraph(navController: NavHostController, modifier: Modifier = Modif
         composable<Destinations.Home> {
             val viewModel: HomeViewModel = hiltViewModel()
             HomeScreen(navController, viewModel)
+        }
+
+        composable<Destinations.Discover> {
+            val viewModel: DiscoverViewModel = hiltViewModel()
+            DiscoverScreen(navController, viewModel)
         }
 
     }
