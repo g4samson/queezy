@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -15,7 +14,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -30,8 +28,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
 import com.profs.queezy.R
+import com.profs.queezy.data.model.Badge
 import com.profs.queezy.data.model.Quiz
 import com.profs.queezy.data.model.User
 import com.profs.queezy.presentation.theme.NeutralGrey5
@@ -49,7 +47,7 @@ fun QuizCard(quiz: Quiz, onClick: () -> Unit) {
             .clip(RoundedCornerShape(20.dp))
             .background(NeutralWhite)
             .border(2.dp, NeutralGrey5, RoundedCornerShape(20.dp))
-            .clickable{ onClick() }
+            .clickable { onClick() }
     ) {
         Row(
             Modifier
@@ -108,27 +106,7 @@ fun FriendCard(user: User) {
             .height(60.dp),
         Arrangement.spacedBy(16.dp)
     ) {
-        Box(Modifier.size(60.dp)) {
-            AsyncImage(
-                user.image,
-                null,
-                Modifier
-                    .size(56.dp)
-                    .clip(CircleShape),
-                contentScale = ContentScale.FillBounds
-            )
-
-            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.BottomEnd) {
-                Icon(
-                    painterResource(user.countryFlag),
-                    null,
-                    Modifier
-                        .size(20.dp)
-                        .clip(RoundedCornerShape(6.dp)),
-                    Color.Unspecified
-                )
-            }
-        }
+        ImageWithFlag(user, 56.dp)
 
         Column(Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Center) {
             Text(
@@ -149,6 +127,28 @@ fun FriendCard(user: User) {
 @Composable
 private fun FriendCardPreview() {
     FriendCard(
-        User("1", "Maren", "Workman", 325, R.drawable.flag_germany, "https://dummyimage.com/400x400/000/fff&text=M")
+        User(
+            "1",
+            "Maren",
+            "Workman",
+            325,
+            R.drawable.flag_germany,
+            "https://dummyimage.com/400x400/000/fff&text=M"
+        )
     )
+}
+
+@Composable
+fun BadgeCard(badge: Badge, onClick: () -> Unit) {
+
+    IconButton(onClick = { onClick() }, Modifier.size(88.dp), enabled = badge.enabled) {
+        Icon(painterResource(badge.image), badge.name, Modifier.fillMaxSize(), Color.Unspecified)
+    }
+
+}
+
+@Preview
+@Composable
+private fun BadgeCardPreview() {
+    BadgeCard(Badge("", R.drawable.badge_1, true)) {}
 }

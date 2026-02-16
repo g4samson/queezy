@@ -9,30 +9,37 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import com.profs.queezy.R
-import com.profs.queezy.data.utils.Destinations
+import com.profs.queezy.data.model.User
 import com.profs.queezy.presentation.theme.Accent3
 import com.profs.queezy.presentation.theme.NeutralGrey4
 import com.profs.queezy.presentation.theme.NeutralWhite
@@ -202,4 +209,176 @@ fun CategoryHeader(title: String, more: Boolean = false, onClick: () -> Unit) {
 @Composable
 private fun CategoryHeaderPreview() {
     CategoryHeader("Live Quizzes", true) {}
+}
+
+
+@Composable
+fun ImageWithFlag(user: User, size: Dp) {
+
+    Box(Modifier.size(size + 4.dp)) {
+        AsyncImage(
+            user.image,
+            null,
+            Modifier
+                .size(size)
+                .clip(CircleShape),
+            contentScale = ContentScale.FillBounds
+        )
+
+        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.BottomEnd) {
+            Icon(
+                painterResource(user.countryFlag),
+                null,
+                Modifier
+                    .size(20.dp)
+                    .clip(RoundedCornerShape(6.dp)),
+                Color.Unspecified
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun ImageWithFlagPreview() {
+    ImageWithFlag(
+        User("", "", "", 0, R.drawable.flag_ireland, "R.drawable.image_test_media"),
+        96.dp
+    )
+}
+
+@Composable
+fun ProfileInfo(user: User, rank: Int) {
+
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .height(101.dp)
+            .clip(RoundedCornerShape(20.dp))
+            .background(Primary),
+        Arrangement.SpaceEvenly,
+        Alignment.CenterVertically
+    ) {
+
+        Column(
+            Modifier.fillMaxHeight(),
+            Arrangement.Center,
+            Alignment.CenterHorizontally
+        ) {
+
+            Icon(
+                painterResource(R.drawable.icon_star),
+                null,
+                Modifier.size(24.dp),
+                NeutralWhite
+            )
+
+            Text(
+                "POINTS", Modifier.padding(vertical = 3.dp),
+                style = Typography.bodyMedium.copy(
+                    color = NeutralWhite.copy(0.5f),
+                    letterSpacing = 2.sp, fontWeight = FontWeight.Medium
+                )
+            )
+
+            Text(
+                "${user.rating}",
+                style = Typography.displayMedium.copy(
+                    color = NeutralWhite,
+                    fontWeight = FontWeight.Bold
+                )
+            )
+
+        }
+
+
+        Row(
+            Modifier.fillMaxHeight(),
+            Arrangement.spacedBy(12.dp),
+            Alignment.CenterVertically
+        ) {
+            VerticalDivider(
+                Modifier
+                    .fillMaxHeight()
+                    .padding(vertical = 16.dp),
+                1.dp,
+                NeutralWhite.copy(0.5f)
+            )
+
+            Column(
+                Modifier.fillMaxHeight(),
+                Arrangement.Center,
+                Alignment.CenterHorizontally
+            ) {
+                Icon(
+                    painterResource(R.drawable.icon_world),
+                    null,
+                    Modifier.size(24.dp),
+                    NeutralWhite
+                )
+
+                Text(
+                    "WORLD RANK", Modifier.padding(vertical = 3.dp),
+                    style = Typography.bodyMedium.copy(
+                        color = NeutralWhite.copy(0.5f),
+                        letterSpacing = 2.sp, fontWeight = FontWeight.Medium
+                    )
+                )
+
+                Text(
+                    "$rank",
+                    style = Typography.displayMedium.copy(
+                        color = NeutralWhite,
+                        fontWeight = FontWeight.Bold
+                    )
+                )
+            }
+
+            VerticalDivider(
+                Modifier
+                    .fillMaxHeight()
+                    .padding(vertical = 16.dp),
+                1.dp,
+                NeutralWhite.copy(0.5f)
+            )
+        }
+
+        Column(
+            Modifier.fillMaxHeight(),
+            Arrangement.Center,
+            Alignment.CenterHorizontally
+        ) {
+
+            Icon(
+                painterResource(R.drawable.icon_local),
+                null,
+                Modifier.size(24.dp),
+                NeutralWhite
+            )
+
+            Text(
+                "LOCAL RANK", Modifier.padding(vertical = 3.dp),
+                style = Typography.bodyMedium.copy(
+                    color = NeutralWhite.copy(0.5f),
+                    letterSpacing = 2.sp, fontWeight = FontWeight.Medium
+                )
+            )
+
+            Text(
+                "#56",
+                style = Typography.displayMedium.copy(
+                    color = NeutralWhite,
+                    fontWeight = FontWeight.Bold
+                )
+            )
+
+        }
+
+    }
+}
+
+@Preview
+@Composable
+private fun ProfileInfoPreview() {
+    ProfileInfo(User("", "", "", 590, R.drawable.flag_ireland, "R.drawable.image_test_media"), 1438)
 }

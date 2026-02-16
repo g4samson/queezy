@@ -1,6 +1,7 @@
 package com.profs.queezy.data.utils
 
 import com.profs.queezy.R
+import com.profs.queezy.data.model.Badge
 import com.profs.queezy.data.model.Quiz
 import com.profs.queezy.data.model.User
 import javax.inject.Inject
@@ -17,6 +18,15 @@ class Storage @Inject constructor() {
         User("1", "Maren", "Workman", 325, R.drawable.flag_germany, "https://dummyimage.com/400x400/000/fff&text=MW"),
         User("2", "Brandon", "Matrovs", 124, R.drawable.flag_czech_republic, "https://dummyimage.com/400x400/000/fff&text=BM"),
         User("3", "Manuela", "Lipshutz", 437, R.drawable.flag_italy, "https://dummyimage.com/400x400/000/fff&text=ML")
+    )
+
+    fun getBadges() = listOf(
+        Badge("", R.drawable.badge_1, true),
+        Badge("", R.drawable.badge_2, true),
+        Badge("", R.drawable.badge_3, true),
+        Badge("", R.drawable.badge_4, true),
+        Badge("", R.drawable.badge_5, true),
+        Badge("", R.drawable.badge_6, false),
     )
 
 }

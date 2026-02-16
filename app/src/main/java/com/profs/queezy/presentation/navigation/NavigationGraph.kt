@@ -11,6 +11,8 @@ import com.profs.queezy.presentation.screen.discover.DiscoverScreen
 import com.profs.queezy.presentation.screen.discover.DiscoverViewModel
 import com.profs.queezy.presentation.screen.home.HomeScreen
 import com.profs.queezy.presentation.screen.home.HomeViewModel
+import com.profs.queezy.presentation.screen.profile.ProfileScreen
+import com.profs.queezy.presentation.screen.profile.ProfileViewModel
 import com.profs.queezy.presentation.screen.splash.SplashScreen
 
 @Composable
@@ -28,6 +30,11 @@ fun NavigationGraph(navController: NavHostController, modifier: Modifier = Modif
         composable<Destinations.Discover> {
             val viewModel: DiscoverViewModel = hiltViewModel()
             DiscoverScreen(navController, viewModel)
+        }
+
+        composable<Destinations.Profile> {
+            val viewModel: ProfileViewModel = hiltViewModel()
+            ProfileScreen(navController, viewModel)
         }
 
     }

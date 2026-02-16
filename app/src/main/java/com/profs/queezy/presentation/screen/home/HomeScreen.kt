@@ -2,6 +2,7 @@ package com.profs.queezy.presentation.screen.home
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,7 +20,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
@@ -110,7 +110,8 @@ fun HomeScreen(navController: NavHostController, viewModel: HomeViewModel) {
                         null,
                         Modifier
                             .size(56.dp)
-                            .clip(CircleShape),
+                            .clip(CircleShape)
+                            .clickable { navController.navigate(Destinations.Profile) },
                         contentScale = ContentScale.FillBounds
                     )
                 }
@@ -134,7 +135,10 @@ fun HomeScreen(navController: NavHostController, viewModel: HomeViewModel) {
                     Arrangement.spacedBy(16.dp),
                     Alignment.CenterHorizontally
                 ) {
-                    CategoryHeader("Live Quizzes", true) { navController.navigate(Destinations.Discover) }
+                    CategoryHeader(
+                        "Live Quizzes",
+                        true
+                    ) { navController.navigate(Destinations.Discover) }
 
                     LazyColumn(
                         Modifier.fillMaxWidth(),
