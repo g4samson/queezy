@@ -16,6 +16,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -49,6 +51,7 @@ import com.himanshoe.charty.pie.config.PieChartStyle
 import com.himanshoe.charty.pie.data.PieData
 import com.profs.queezy.R
 import com.profs.queezy.data.model.Quiz
+import com.profs.queezy.data.model.User
 import com.profs.queezy.presentation.theme.Accent1
 import com.profs.queezy.presentation.theme.Accent2
 import com.profs.queezy.presentation.theme.Accent4
@@ -57,11 +60,13 @@ import com.profs.queezy.presentation.theme.DarkPink
 import com.profs.queezy.presentation.theme.LowVisible
 import com.profs.queezy.presentation.theme.NeutralBlack
 import com.profs.queezy.presentation.theme.NeutralGrey2
+import com.profs.queezy.presentation.theme.NeutralGrey6
 import com.profs.queezy.presentation.theme.NeutralWhite
 import com.profs.queezy.presentation.theme.Pink
 import com.profs.queezy.presentation.theme.PinkLighter1
 import com.profs.queezy.presentation.theme.PinkLighter2
 import com.profs.queezy.presentation.theme.Primary
+import com.profs.queezy.presentation.theme.Secondary
 import com.profs.queezy.presentation.theme.Typography
 
 @Composable
@@ -419,4 +424,51 @@ fun ProfilePerformance() {
 @Composable
 private fun ProfilePerformancePreview() {
     ProfilePerformance()
+}
+
+@Composable
+fun AdvancedPageSwitcher(values: List<String>, onPageChange: (Int) -> Unit) {
+
+    var selected by remember { mutableIntStateOf(0) }
+
+    Row(
+        Modifier.fillMaxWidth(),
+        Arrangement.SpaceBetween,
+        Alignment.CenterVertically
+    ) {
+        values.forEachIndexed { index, page ->
+            Button(
+                onClick = {
+                    onPageChange(index)
+                    selected = index
+                },
+                modifier = Modifier
+                    .weight(1f)
+                    .clip(RoundedCornerShape(20.dp))
+                    .background(if (selected == index) Secondary else Primary)
+                    .padding(horizontal = 4.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = if (selected == index) Secondary else Primary)
+            ) {
+                Text(
+                    page,
+                    style = Typography.displayMedium.copy(
+                        color = if (selected == index) NeutralWhite else NeutralGrey6,
+                        fontWeight = if (selected == index) FontWeight.Medium else FontWeight.Normal
+                    )
+                )
+            }
+
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun AdvancedPageSwitcherPrev() {
+    AdvancedPageSwitcher(listOf("Weekly", "All Time")) {}
+}
+
+@Composable
+fun LeaderboardPodium(topUsers: List<User>) {
+    
 }

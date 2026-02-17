@@ -9,6 +9,7 @@ val NeutralGrey2 = Color(0xFF858494)
 val NeutralGrey3 = Color(0xFFCCCCCC)
 val NeutralGrey4 = Color(0xFFE6E6E6)
 val NeutralGrey5 = Color(0xFFEFEEFC)
+val NeutralGrey6 = Color(0xFFB9B4E4)
 
 
 val Primary = Color(0xFF6A5AE0)
@@ -22,11 +23,9 @@ val Accent5 = Color(0xFFA9ADF3)
 
 val LowVisible = Color(0x80181254)
 
-
+val LightYellow = Color(0xFFFFB380)
+val DarkYellow = Color(0xFFFF9B57)
 val DarkPink = Color(0xFF660012)
 val Pink = Color(0xFFFF8FA2)
 val PinkLighter1 = Color(0xFFFFCCD5)
 val PinkLighter2 = Color(0xFFFFB3C0)
-
-
-val NonSelectedText = Color(0xFFB9B4E4)
