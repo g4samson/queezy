@@ -15,8 +15,12 @@ val Primary = Color(0xFF6A5AE0)
 val Secondary = Color(0xFF9087E5)
 
 val Accent1 = Color(0xFFFFD6DD)
-val Accent2 = Color(0xFF6A5AE0)
+val Accent2 = Color(0xFFC4D0FB)
 val Accent3 = Color(0xFF5B4EC3)
+val Accent4 = Color(0xFFE8E5FA)
+val Accent5 = Color(0xFFA9ADF3)
+
+val LowVisible = Color(0x80181254)
 
 
 val DarkPink = Color(0xFF660012)

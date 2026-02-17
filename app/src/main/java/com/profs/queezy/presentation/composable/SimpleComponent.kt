@@ -41,6 +41,7 @@ import coil.compose.AsyncImage
 import com.profs.queezy.R
 import com.profs.queezy.data.model.User
 import com.profs.queezy.presentation.theme.Accent3
+import com.profs.queezy.presentation.theme.NeutralBlack
 import com.profs.queezy.presentation.theme.NeutralGrey4
 import com.profs.queezy.presentation.theme.NeutralWhite
 import com.profs.queezy.presentation.theme.Primary
@@ -381,4 +382,48 @@ fun ProfileInfo(user: User, rank: Int) {
 @Composable
 private fun ProfileInfoPreview() {
     ProfileInfo(User("", "", "", 590, R.drawable.flag_ireland, "R.drawable.image_test_media"), 1438)
+}
+
+@Composable
+fun QuizInfoContainer(title: String, number: Int, icon: Int, bgColor: Color, textColor: Color) {
+
+    Box(
+        Modifier
+            .width(140.dp)
+            .clip(RoundedCornerShape(20.dp))
+            .background(bgColor)
+            .padding(16.dp),
+        contentAlignment = Alignment.TopEnd
+    ) {
+        Column(Modifier.fillMaxWidth(), Arrangement.Center, Alignment.Start) {
+            Text(
+                "$number", style = Typography.displayMedium.copy(
+                    color = textColor,
+                    fontSize = 24.sp
+                )
+            )
+
+            Text(
+                title,
+                style = Typography.headlineSmall.copy(
+                    color = textColor,
+                    fontWeight = FontWeight.Normal
+                )
+            )
+        }
+
+        Icon(
+            painterResource(icon),
+            null,
+            Modifier.size(24.dp),
+            textColor
+        )
+    }
+
+}
+
+@Preview
+@Composable
+private fun QuizInfoContainerPreview() {
+    QuizInfoContainer("Quiz Created", 5, R.drawable.icon_create, NeutralWhite, NeutralBlack)
 }
