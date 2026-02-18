@@ -29,6 +29,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -52,6 +53,7 @@ import com.himanshoe.charty.pie.data.PieData
 import com.profs.queezy.R
 import com.profs.queezy.data.model.Quiz
 import com.profs.queezy.data.model.User
+import com.profs.queezy.data.model.response.LeaderboardResponseItem
 import com.profs.queezy.presentation.theme.Accent1
 import com.profs.queezy.presentation.theme.Accent2
 import com.profs.queezy.presentation.theme.Accent4
@@ -469,6 +471,84 @@ private fun AdvancedPageSwitcherPrev() {
 }
 
 @Composable
-fun LeaderboardPodium(topUsers: List<User>) {
-    
+fun LeaderboardPodium(
+    topUsers: List<LeaderboardResponseItem> = listOf(
+        LeaderboardResponseItem("1", "Davis", "Curtis", 2569),
+        LeaderboardResponseItem("2", "Alena", "Donin", 1469),
+        LeaderboardResponseItem("3", "Craig", "Gouse", 1053),
+    )
+) {
+
+    val first = topUsers[0]
+    val second = topUsers[1]
+    val third = topUsers[2]
+
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .paint(
+                painterResource(R.drawable.background_leaderboard_podium),
+                contentScale = ContentScale.FillWidth,
+                alignment = Alignment.BottomCenter
+            ).padding(horizontal = 16.dp),
+        Arrangement.SpaceBetween,
+        Alignment.Bottom
+    ) {
+        Column(
+            Modifier.weight(1f).padding(bottom = 170.dp),
+            Arrangement.Center,
+            Alignment.CenterHorizontally
+        ) {
+            PodiumUser(
+                User(
+                    second.id,
+                    second.first_name,
+                    second.last_name,
+                    second.points,
+                    R.drawable.flag_france,
+                    "https://dummyimage.com/600x400/dedede/c4b2a7.png&text=??"
+                ), 2
+            )
+        }
+
+        Column(
+            Modifier.weight(1f).padding(bottom = 210.dp),
+            Arrangement.Center,
+            Alignment.CenterHorizontally
+        ) {
+            PodiumUser(
+                User(
+                    first.id,
+                    first.first_name,
+                    first.last_name,
+                    first.points,
+                    R.drawable.flag_fortugal,
+                    "https://dummyimage.com/600x400/dedede/c4b2a7.png&text=?"
+                ), 1
+            )
+        }
+
+        Column(
+            Modifier.weight(1f).padding(bottom = 130.dp),
+            Arrangement.Center,
+            Alignment.CenterHorizontally
+        ) {
+            PodiumUser(
+                User(
+                    third.id,
+                    third.first_name,
+                    third.last_name,
+                    third.points,
+                    R.drawable.flag_canada,
+                    "https://dummyimage.com/600x400/dedede/c4b2a7.png&text=???"
+                ), 3
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun LeaderboardPodiumPreview() {
+    LeaderboardPodium()
 }

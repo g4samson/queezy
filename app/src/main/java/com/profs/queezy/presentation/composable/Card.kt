@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -14,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -25,6 +27,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -32,6 +35,9 @@ import com.profs.queezy.R
 import com.profs.queezy.data.model.Badge
 import com.profs.queezy.data.model.Quiz
 import com.profs.queezy.data.model.User
+import com.profs.queezy.data.model.response.LeaderboardResponseItem
+import com.profs.queezy.presentation.theme.NeutralGrey2
+import com.profs.queezy.presentation.theme.NeutralGrey4
 import com.profs.queezy.presentation.theme.NeutralGrey5
 import com.profs.queezy.presentation.theme.NeutralWhite
 import com.profs.queezy.presentation.theme.Primary
@@ -151,4 +157,82 @@ fun BadgeCard(badge: Badge, onClick: () -> Unit) {
 @Composable
 private fun BadgeCardPreview() {
     BadgeCard(Badge("", R.drawable.badge_1, true)) {}
+}
+
+@Composable
+fun LeaderboardCard(item: LeaderboardResponseItem, place: Int) {
+
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .height(92.dp)
+            .clip(RoundedCornerShape(20.dp))
+            .background(NeutralWhite)
+            .padding(horizontal = 16.dp),
+        Arrangement.SpaceBetween,
+        Alignment.CenterVertically
+    ) {
+        Box(
+            Modifier
+                .size(24.dp)
+                .clip(CircleShape)
+                .border(1.dp, NeutralGrey4, CircleShape),
+            contentAlignment = Alignment.Center
+        ) {
+            Text("$place", style = Typography.bodyMedium.copy(fontWeight = FontWeight.Medium))
+        }
+
+        FriendCard(
+            User(
+                "",
+                item.first_name,
+                item.last_name,
+                item.points,
+                R.drawable.flag_germany,
+                "https://dummyimage.com/400x400/000/fff&text=<3"
+            )
+        )
+
+        when (place) {
+            1 -> {
+                Icon(
+                    painterResource(R.drawable.medal_gold),
+                    null,
+                    Modifier.size(40.dp),
+                    Color.Unspecified
+                )
+            }
+
+            2 -> {
+                Icon(
+                    painterResource(R.drawable.medal_silver),
+                    null,
+                    Modifier.size(40.dp),
+                    Color.Unspecified
+                )
+            }
+
+            3 -> {
+                Icon(
+                    painterResource(R.drawable.medal_bronze),
+                    null,
+                    Modifier.size(40.dp),
+                    Color.Unspecified
+                )
+            }
+
+            else -> {
+                Box(Modifier.size(24.dp))
+            }
+        }
+
+
+    }
+
+}
+
+@Preview
+@Composable
+private fun LeaderboardCardPreview() {
+    LeaderboardCard(LeaderboardResponseItem("1", "Davis", "Curtis", 2569), 1)
 }

@@ -12,7 +12,9 @@ import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -84,17 +86,26 @@ fun ProfileScreen(navController: NavHostController, viewModel: ProfileViewModel)
                 contentAlignment = Alignment.TopCenter
             ) {
                 Column(
-                    Modifier
-                        .fillMaxWidth()
+                    if (page == 0) {
+                        Modifier
+                            .fillMaxSize()
+                            .padding(top = 68.dp)
+                            .padding(horizontal = 8.dp)
+                            .clip(RoundedCornerShape(32.dp))
+                            .background(NeutralWhite)
+                    } else Modifier
+                        .fillMaxSize()
                         .padding(top = 68.dp)
                         .padding(horizontal = 8.dp)
                         .clip(RoundedCornerShape(32.dp))
                         .background(NeutralWhite)
+                        .verticalScroll(rememberScrollState())
+                        .requiredHeight(1150.dp)
+
                 ) {
                     Column(
                         Modifier
                             .fillMaxWidth()
-                            .requiredHeight(1165.dp)
                             .padding(horizontal = 16.dp),
                         Arrangement.spacedBy(16.dp),
                         Alignment.CenterHorizontally
@@ -167,7 +178,7 @@ fun ProfileScreen(navController: NavHostController, viewModel: ProfileViewModel)
 
         if (page == 0) {
             Box(Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
-                BottomBar("home", navController)
+                BottomBar("profile", navController)
             }
         }
     }

@@ -427,3 +427,79 @@ fun QuizInfoContainer(title: String, number: Int, icon: Int, bgColor: Color, tex
 private fun QuizInfoContainerPreview() {
     QuizInfoContainer("Quiz Created", 5, R.drawable.icon_create, NeutralWhite, NeutralBlack)
 }
+
+@Composable
+fun PodiumUser(user: User, place: Int) {
+
+    Column(Modifier, Arrangement.Top, Alignment.CenterHorizontally) {
+
+        Box(Modifier, contentAlignment = Alignment.TopCenter) {
+
+            Column(
+                Modifier.padding(top = 24.dp),
+                Arrangement.Top,
+                Alignment.CenterHorizontally
+            ) {
+                ImageWithFlag(user, 56.dp)
+            }
+
+            Image(
+                painterResource(
+                    when (place) {
+                        1 -> R.drawable.medal_gold
+                        2 -> R.drawable.medal_silver
+                        3 -> R.drawable.medal_bronze
+                        else -> 1
+                    }
+                ), null,
+                Modifier.size(40.dp),
+                contentScale = ContentScale.FillBounds
+            )
+        }
+
+        Spacer(Modifier.height(16.dp))
+
+        Text(
+            "${user.firstName} ${user.lastName}",
+            style = Typography.displayMedium.copy(color = NeutralWhite)
+        )
+
+        Spacer(Modifier.height(4.dp))
+
+        Box(
+            Modifier
+                .size(width = 75.dp, height = 35.dp)
+                .clip(RoundedCornerShape(12.dp))
+                .background(Secondary),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                "${user.rating} QP",
+                maxLines = 1,
+                style = Typography.bodyMedium.copy(
+                    color = NeutralWhite,
+                    fontWeight = FontWeight.Medium
+                )
+            )
+        }
+
+        Spacer(Modifier.height(8.dp))
+
+    }
+
+}
+
+@Preview
+@Composable
+private fun PodiumUserPreview() {
+    PodiumUser(
+        User(
+            "",
+            "Davis",
+            "Curtis",
+            2569,
+            R.drawable.flag_fortugal,
+            "R.drawable.image_test_media"
+        ), 1
+    )
+}

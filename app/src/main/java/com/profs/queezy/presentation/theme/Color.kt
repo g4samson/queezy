@@ -14,6 +14,7 @@ val NeutralGrey6 = Color(0xFFB9B4E4)
 
 val Primary = Color(0xFF6A5AE0)
 val Secondary = Color(0xFF9087E5)
+val Tertiary = Color(0xFF5144B6)
 
 val Accent1 = Color(0xFFFFD6DD)
 val Accent2 = Color(0xFFC4D0FB)

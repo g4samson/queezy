@@ -67,7 +67,6 @@ val Typography = Typography(
         letterSpacing = 0.sp,
         color = NeutralGrey2
     ),
-
     headlineSmall = TextStyle(  // text button's text
         fontFamily = Rubik,
         fontWeight = FontWeight.Medium,
