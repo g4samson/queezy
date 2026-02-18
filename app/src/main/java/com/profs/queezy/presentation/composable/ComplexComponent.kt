@@ -346,7 +346,7 @@ fun ProfilePerformance() {
         BarData("Music", 60f, ChartyColor.Solid(Accent5)),
     )
 
-    val colors = listOf<Color>(Accent1, Accent2, Accent5)
+    val colors = listOf(Accent1, Accent2, Accent5)
 
     Column(
         Modifier

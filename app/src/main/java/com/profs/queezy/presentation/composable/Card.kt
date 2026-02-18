@@ -36,7 +36,6 @@ import com.profs.queezy.data.model.Badge
 import com.profs.queezy.data.model.Quiz
 import com.profs.queezy.data.model.User
 import com.profs.queezy.data.model.response.LeaderboardResponseItem
-import com.profs.queezy.presentation.theme.NeutralGrey2
 import com.profs.queezy.presentation.theme.NeutralGrey4
 import com.profs.queezy.presentation.theme.NeutralGrey5
 import com.profs.queezy.presentation.theme.NeutralWhite

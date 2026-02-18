@@ -3,7 +3,6 @@ package com.profs.queezy.domain.service
 import com.profs.queezy.data.model.Badge
 import com.profs.queezy.data.model.Quiz
 import com.profs.queezy.data.model.User
-import com.profs.queezy.data.model.response.LeaderboardResponse
 import com.profs.queezy.data.model.response.LeaderboardResponseItem
 import com.profs.queezy.data.model.response.UserResponse
 

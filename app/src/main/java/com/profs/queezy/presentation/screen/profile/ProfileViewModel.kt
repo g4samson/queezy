@@ -28,7 +28,7 @@ class ProfileViewModel @Inject constructor(private val service: DomainService) :
     private val _rank = MutableStateFlow<Int?>(0)
     val rank: StateFlow<Int?> = _rank
 
-    private val _page = MutableStateFlow<Int>(0)
+    private val _page = MutableStateFlow(0)
     val page: StateFlow<Int> = _page
 
     fun getProfile() {

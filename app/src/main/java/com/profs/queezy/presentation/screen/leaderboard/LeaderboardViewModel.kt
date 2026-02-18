@@ -23,7 +23,7 @@ class LeaderboardViewModel @Inject constructor(private val service: DomainServic
         }
     }
 
-    private val _opened = MutableStateFlow<Boolean>(false)
+    private val _opened = MutableStateFlow(false)
     val opened: StateFlow<Boolean> = _opened
 
     fun saveState(i: Boolean) {
